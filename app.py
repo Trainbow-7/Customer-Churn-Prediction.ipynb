@@ -1,12 +1,19 @@
 
 import streamlit as st
 import pandas as pd
+import numpy as np
 import joblib
+from tensorflow.keras.models import load_model
 
 # Load saved artifacts
-model = joblib.load("churn_model.pkl")
-scaler = joblib.load("scaler.pkl")
-gender_encoder = joblib.load("gender_encoder.pkl")
+@st.cache_resource
+def load_artifacts():
+    model = load_model("churn_ann_model.h5")
+    scaler = joblib.load("scaler.pkl")
+    gender_encoder = joblib.load("gender_encoder.pkl")
+    return model, scaler, gender_encoder
+
+model, scaler, gender_encoder = load_artifacts()
 
 st.title("Customer Churn Prediction")
 st.write("Enter customer details to predict churn likelihood.")
@@ -39,10 +46,11 @@ if st.button("Predict Churn"):
     ])
 
     input_scaled = scaler.transform(input_data)
-    prediction = model.predict(input_scaled)[0]
-    probability = model.predict_proba(input_scaled)[0][1]
+    prediction_prob = model.predict(input_scaled)
+    probability = float(prediction_prob[0][0])
 
-    if prediction == 1:
+    if probability > 0.5:
         st.error(f"This customer is likely to churn. (Probability: {probability:.2%})")
     else:
         st.success(f"This customer is likely to stay. (Probability of churn: {probability:.2%})")
+
