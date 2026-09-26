@@ -15,7 +15,7 @@ Predicts whether a bank customer will churn (leave the bank) using historical cu
 - Artificial Neural Network (Keras/TensorFlow)
 - Model evaluation (accuracy, confusion matrix, classification report)
 - Feature importance analysis
-- Streamlit web app for live predictions
+- Streamlit web app with worldwide country support for live predictions
 
 ## 📁 Repository Structure
 
