@@ -2,6 +2,9 @@
 
 Predicts whether a bank customer will churn (leave the bank) using historical customer data such as credit score, age, balance, geography, and account activity. Built with a Random Forest classifier and a Keras neural network, achieving ~86% accuracy — helping identify at-risk customers so businesses can act early to retain them.
 
+🔗 **Live Demo:** [customer-churn-prediction-ipynb.onrender.com](https://customer-churn-prediction-ipynb.onrender.com)
+> Note: hosted on Render's free tier — the app may take 30–60 seconds to wake up if it's been inactive.
+
 ## 📊 Dataset
 `Churn_Modelling.csv` — 10,000 bank customer records with features like credit score, age, tenure, balance, number of products, credit card status, activity status, estimated salary, and geography.
 
@@ -25,6 +28,7 @@ Predicts whether a bank customer will churn (leave the bank) using historical cu
 ├── gender_encoder.pkl                # LabelEncoder for the Gender column
 ├── Churn_Modelling.csv               # Dataset
 ├── requirements.txt                  # Python dependencies
+├── runtime.txt                       # Pinned Python version
 └── README.md
 ```
 
@@ -54,4 +58,4 @@ scaler = joblib.load('scaler.pkl')
 | Neural Network (ANN) | ~86.5% |
 
 ## 🛠️ Tech Stack
-Python · Pandas · Scikit-learn · TensorFlow/Keras · Streamlit
+Python · Pandas · Scikit-learn · TensorFlow/Keras · Streamlit · Render (deployment)
